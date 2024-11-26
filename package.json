@@ -1,0 +1,15 @@
+{
+  "name": "ts-workshop",
+  "description": "ts-workshop using code-workshop-kit",
+  "license": "MIT",
+  "author": "ts-workshop",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "cwk run",
+    "scaffold": "cwk scaffold",
+    "key": "cwk generate-key"
+  },
+  "dependencies": {
+    "code-workshop-kit": "^2.0.3"
+  }
+}
