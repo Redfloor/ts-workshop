@@ -16,3 +16,5 @@ This builds the core workshop with the users.
 We then nav to local:8000.
 
 npx cwk scaffold -f overwrites existing files
+
+- Use Live Share plugin to share code
