@@ -1,28 +1,43 @@
+const exec = require('child_process').exec;
 const readline = require('readline');
-import {firstTest} from "./exercises/excercise1";
+const path = require('path');
 
-type testType = {
-  name: string;
-  age: number;
-  boolean: boolean;
-  union: 'yes' | 'no';
-}
-
-console.log('<%= intro %>');
+const exercises = [
+  './exercises/excercise1.ts',
+  // './exercises/excercise1.ts',
+  // './exercises/excercise1.ts',
+  // './exercises/excercise1.ts',
+  // './exercises/excercise1.ts',
+  // Add more exercise file paths here
+];
 
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
-rl.emit('line', firstTest());
+const runExercise = (file, callback) => {
+  const absolutePath = path.resolve(file);
+  exec(`ts-node ${absolutePath}`, (error, stdout, stderr) => {
+    if (error) {
+      // console.log({error, stdout, stderr});
+      console.error(`Error in ${file}: ${stderr}\n`);
+    } else {
+      console.log(`Success: ${file} ran without errors.\n`);
+    }
+    callback();
+  });
+};
 
+const runExercises = (index) => {
+  if (index < exercises.length) {
+    runExercise(exercises[index], () => {
+      setTimeout(() => runExercises(index + 1), 2000);
+    });
+  } else {
+    rl.write('All exercises completed.\n');
+    rl.close();
+  }
+};
 
-rl.question('Where do you live? ', (country) => {
-  console.log(`You are a citizen of ${country}`);
-  rl.close();
-});
-
-rl.on('close', () => {
-  process.exit(0);
-});
+runExercises(0);

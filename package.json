@@ -3,6 +3,7 @@
   "description": "ts-workshop using code-workshop-kit",
   "license": "MIT",
   "author": "ts-workshop",
+  "type": "commonjs",
   "version": "0.0.0",
   "scripts": {
     "start": "cwk run",

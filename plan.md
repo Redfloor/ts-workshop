@@ -7,6 +7,6 @@
 
 ### Session 1
 [ ] How to setup ts in a local project. (20 min?)
-[ ] Basic typing stuff
+[ ] Basic typing stuff // What is a type, how to create an interface, how to type a function? Different types
 [ ] 
 [ ] 
