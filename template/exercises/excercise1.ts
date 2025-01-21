@@ -1,3 +1,3 @@
 export const firstTest: () => string = () => {
-    return 1;
+    return '1';
 }

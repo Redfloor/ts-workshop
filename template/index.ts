@@ -4,10 +4,7 @@ const path = require('path');
 
 const exercises = [
   './exercises/excercise1.ts',
-  // './exercises/excercise1.ts',
-  // './exercises/excercise1.ts',
-  // './exercises/excercise1.ts',
-  // './exercises/excercise1.ts',
+  './exercises/excercise2.ts',
   // Add more exercise file paths here
 ];
 
@@ -32,7 +29,7 @@ const runExercise = (file, callback) => {
 const runExercises = (index) => {
   if (index < exercises.length) {
     runExercise(exercises[index], () => {
-      setTimeout(() => runExercises(index + 1), 2000);
+      setTimeout(() => runExercises(index + 1), 200);
     });
   } else {
     rl.write('All exercises completed.\n');
