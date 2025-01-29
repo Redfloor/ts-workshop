@@ -11,6 +11,7 @@
     "key": "cwk generate-key"
   },
   "dependencies": {
-    "code-workshop-kit": "^2.0.3"
+    "code-workshop-kit": "^2.0.3",
+    "zod": "^3.24.1"
   }
 }
