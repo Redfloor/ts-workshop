@@ -17,19 +17,25 @@ const runExercise = (file, callback) => {
   const absolutePath = path.resolve(file);
   exec(`ts-node ${absolutePath}`, (error, stdout, stderr) => {
     if (error) {
-      // console.log({error, stdout, stderr});
       console.error(`Error in ${file}: ${stderr}\n`);
+      callback(error, null);
     } else {
       console.log(`Success: ${file} ran without errors.\n`);
+      callback(null, stdout);
     }
-    callback();
   });
 };
 
 const runExercises = (index) => {
   if (index < exercises.length) {
-    runExercise(exercises[index], () => {
-      setTimeout(() => runExercises(index + 1), 200);
+    runExercise(exercises[index], (error, result) => {
+      if (error) {
+        rl.write('Execution stopped due to an error.\n');
+        rl.close();
+      } else {
+        console.log(`Output: ${result}`);
+        setTimeout(() => runExercises(index + 1), 2000);
+      }
     });
   } else {
     rl.write('All exercises completed.\n');
