@@ -3,10 +3,11 @@ const readline = require('readline');
 const path = require('path');
 
 const exercises = [
-  // './exercises/excercise1.ts',
-  // './exercises/excercise2.ts',
-  // './exercises/excercise3.ts',
+  './exercises/excercise1.ts',
+  './exercises/excercise2.ts',
+  './exercises/excercise3.ts',
   './exercises/excercise4.ts',
+  './exercises/excercise5.ts',
   // Add more exercise file paths here
 ];
 
