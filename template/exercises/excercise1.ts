@@ -31,8 +31,8 @@ const username = "David";
 const usersurname = "Pendragon";
 
 // Fix these (should be strings):
-let usernameTest: any = 123;
-let usersurnameTest: any = false;
+let usernameTest = 123;
+let usersurnameTest = false;
 
 // Validation
 validateString(usernameTest);
@@ -112,6 +112,7 @@ let invalidPerson: any = { name: 123, age: "Fifteen" };
 validatePerson(validPerson);
 validatePerson(invalidPerson);
 
+// todo: @david / @dylan, fix or improve these
 /*** Mini Lesson: Functions ***/
 // Functions have specific parameter and return types. 
 // TypeScript checks that functions are used with correct argument types.
@@ -132,52 +133,8 @@ function brokenGreet(age: number): string {
 validateGreetFunction(greet);
 validateGreetFunction(brokenGreet);
 
-/*** Mini Lesson: Classes ***/
-// Classes define blueprints for creating objects. 
-// They can have properties and methods with defined types.
 
-console.log("\n--- Classes ---");
-
-class Animal {
-  name: string;
-  constructor(name: string) {
-    this.name = name;
-  }
-  speak(): string {
-    return `${this.name} makes a noise.`;
-  }
-}
-
-// Correct Animal instance
-const dog = new Animal("Dog");
-
-// Broken Animal-like object:
-let notAnAnimal: any = { name: "Ghost", speak: () => 42 };
-
-// Validation
-validateAnimalInstance({ name: dog.name, speak: dog.speak.bind(dog) });
-validateAnimalInstance(notAnAnimal);
-
-/*** Mini Lesson: Generics ***/
-// Generics allow functions and classes to work with various types while maintaining type safety.
-
-console.log("\n--- Generics ---");
-
-// Correct identity function
-function identity<T>(arg: T): T {
-  return arg;
-}
-
-// Broken identity function:
-function brokenIdentity<T>(arg: T): T {
-  return undefined as any; // purposely incorrect
-}
-
-// Validation
-validateIdentityFunction(identity, "Test", "Test");
-validateIdentityFunction(brokenIdentity, 123, 123);
-
-/*** Human-Readable Challenges ***/
+/*** Challenges ***/
 // At the end of each section, you may encounter challenges that ask you to implement new types, interfaces, and validation logic manually.
 // Follow these steps:
 // 1. Read the challenge description.
@@ -185,28 +142,29 @@ validateIdentityFunction(brokenIdentity, 123, 123);
 // 3. Implement any required functions or classes.
 // 4. Use provided examples and call validation functions to check your work.
 
-console.log("\n--- Challenges ---");
+// todo @dylan / @david: setup challenges
+// console.log("\n--- Challenges ---");
 
-// Challenge instructions appear as comments and console logs:
+// // Challenge instructions appear as comments and console logs:
 
-console.log(`
-Challenge 1:
-- Define an interface 'Book' with properties:
-  • title: string
-  • pages: number
-- Implement a Zod schema and 'validateBook' function in validations.ts for 'Book'.
-- In a similar style to previous sections, create valid and invalid Book objects,
-  then use 'validateBook' to check them.
-`);
+// console.log(`
+// Challenge 1:
+// - Define an interface 'Book' with properties:
+//   • title: string
+//   • pages: number
+// - Implement a Zod schema and 'validateBook' function in validations.ts for 'Book'.
+// - In a similar style to previous sections, create valid and invalid Book objects,
+//   then use 'validateBook' to check them.
+// `);
 
-console.log(`
-Challenge 2:
-- Define an interface 'User' with:
-  • username: string
-  • isActive: boolean
-- Implement corresponding schema and 'validateUser' in validations.ts.
-- Test 'validateUser' with valid and invalid User objects in this file.
-`);
+// console.log(`
+// Challenge 2:
+// - Define an interface 'User' with:
+//   • username: string
+//   • isActive: boolean
+// - Implement corresponding schema and 'validateUser' in validations.ts.
+// - Test 'validateUser' with valid and invalid User objects in this file.
+// `);
 
 }
 
