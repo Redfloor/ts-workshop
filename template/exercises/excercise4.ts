@@ -8,30 +8,30 @@ interface <%= participantName %>WrongProduct {
   name: string;
   price: string; // Expected: number
 }
-  
+
 // ❌ Incorrect: Quantity should be a number, not a string.
 interface <%= participantName %>WrongCartItem {
   product: <%= participantName %>WrongProduct;
   quantity: string; // Expected: number
 }
-  
+
 // The shopping cart holds multiple cart items.
 interface <%= participantName %>WrongShoppingCart {
   items: <%= participantName %>WrongCartItem[];
 }
-  
+
 // Create a new, empty shopping cart.
 function <%= participantName %>CreateCart(): <%= participantName %>WrongShoppingCart {
   return { items: [] };
 }
-  
+
 // Adds an item to the cart.
 // ❌ Note: The parameter "quantity" is typed as string intentionally.
 function <%= participantName %>AddItemToCart(cart: <%= participantName %>WrongShoppingCart, product: <%= participantName %>WrongProduct, quantity: string): void {
   const item: <%= participantName %>WrongCartItem = { product, quantity };
   cart.items.push(item);
 }
-  
+
 // Calculates the total cost of the cart.
 // ❌ Error: Multiplying string values (product.price and quantity) will cause an error.
 function <%= participantName %>CalculateTotal(cart: <%= participantName %>WrongShoppingCart): number {
@@ -41,7 +41,7 @@ function <%= participantName %>CalculateTotal(cart: <%= participantName %>WrongS
     // Both product.price and quantity are strings, but arithmetic requires numbers.
   }, 0);
 }
-  
+
 // Applies a discount to the total cost.
 // ❌ Error: Discount is provided as a string; subtraction from a number will fail.
 function <%= participantName %>ApplyDiscount(cart: <%= participantName %>WrongShoppingCart, discount: string): number {
@@ -50,7 +50,7 @@ function <%= participantName %>ApplyDiscount(cart: <%= participantName %>WrongSh
   //         ^^^^^            ^^^^^^^
   // 'discount' should be a number.
 }
-  
+
 // Updates the quantity of a product in the cart.
 // ❌ Error: newQuantity is typed as string instead of a number.
 function <%= participantName %>updateItemQuantity(cart: <%= participantName %>WrongShoppingCart, productId: number, newQuantity: string): void {
@@ -59,18 +59,18 @@ function <%= participantName %>updateItemQuantity(cart: <%= participantName %>Wr
     item.quantity = newQuantity;
   }
 }
-  
+
 // -------------------
 // Prettified Console Output Helpers
 // -------------------
-function <%= participantName %>PrintDivider(): void {
+function <%= participantName %>ProductPrintDivider(): void {
   console.log('==========================================');
 }
 
 function <%= participantName %>PrintCartHeader(): void {
-  <%= participantName %>PrintDivider();
+  <%= participantName %>ProductPrintDivider();
   console.log('🛒 Shopping Cart Summary');
-  <%= participantName %>PrintDivider();
+  <%= participantName %>ProductPrintDivider();
 }
 
 function <%= participantName %>PrintCartItems(cart: <%= participantName %>WrongShoppingCart): void {
@@ -82,7 +82,7 @@ function <%= participantName %>PrintCartItems(cart: <%= participantName %>WrongS
     // ❌ Error: Multiplying strings will cause arithmetic issues.
     const subtotal = item.product.price * item.quantity;
     console.log(`       Subtotal: $${subtotal}`);
-    <%= participantName %>PrintDivider();
+    <%= participantName %>ProductPrintDivider();
   });
 }
 
@@ -92,9 +92,9 @@ function <%= participantName %>PrintCartTotals(cart: <%= participantName %>Wrong
   console.log(`💰 Total before discount: $${totalBefore}`);
   console.log(`💸 Discount applied     : $${discount}`);
   console.log(`🤑 Total after discount  : $${totalAfter}`);
-  <%= participantName %>PrintDivider();
+  <%= participantName %>ProductPrintDivider();
 }
-  
+
 // -------------------
 // Sample Usage
 // -------------------
