@@ -1,5 +1,5 @@
 export default {
-  participants: ['David', 'Dylan', 'Dirk'],
+  participants: ['David', 'Dylan', 'Tris'],
   title: 'Typescript node Workshop',
   target: 'terminal',
   targetOptions: {
