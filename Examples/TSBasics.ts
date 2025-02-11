@@ -9,7 +9,12 @@ console.log(`Title: ${title}`);
 console.log(`Pages: ${pages}`);
 console.log(`Is Available: ${isAvailable}`);
 
+if (isAvailable.split()) {
+
+}
+
 // Union Types
+// Type DESCRIBES something. What is a BookID made of when used later.
 type BookID = string | number;
 
 let bookId1: BookID = "ISBN1234567890";
@@ -32,6 +37,7 @@ function getBookInfo(id: BookID, author: string | null): string {
 
 console.log(getBookInfo(bookId1, author));
 console.log(getBookInfo(bookId2, null));
+console.log(getBookInfo(true, 1));
 
 // Interface for a Book
 interface Book {
@@ -41,6 +47,10 @@ interface Book {
   author: string | null;
   publicationYear?: number;
   publisher: "Penguin" | "Random House" | "HarperCollins";
+}
+
+interface Genre {
+  books: Book[],
 }
 
 // Creating a book object
