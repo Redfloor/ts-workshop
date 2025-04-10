@@ -10,7 +10,7 @@ import {
     validateGreetFunction,
     validateAnimalInstance,
     validateIdentityFunction
-  } from "../validations";
+  } from "../../validations";
 
 //   const readline = require('readline');
 //   const rl = readline.createInterface({
