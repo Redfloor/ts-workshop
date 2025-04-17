@@ -1,5 +1,6 @@
 export default {
-  participants: ['David', "David van Zyl", 'Dylan', "Dylan Becks"],
+  // Note: Do not use spaces in these strings.
+  participants: ['David', 'Dylan', "Dylan Becks", 'Georg', 'Henk', 'James', 'Jeandre', 'Jondre', 'Kivesh', 'Luke', 'Nicholas', 'Sean', 'Shani', 'Stephan', 'Strijdom'],
   title: 'Typescript node Workshop',
   target: 'terminal',
   targetOptions: {
