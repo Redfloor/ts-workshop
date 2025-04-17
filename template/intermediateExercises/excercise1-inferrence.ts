@@ -49,7 +49,8 @@ function <%= participantName %>_assignHouse(points: number) {
     // What happens if we return a number here? Uncomment the line below.
     // return 0; // Hover over the function name '<%= participantName %>_assignHouse'. What's the inferred return type now? (Answer: string | number)
     return "Slytherin"; // Infers string
-}
+} // a more accurate return type would be string union of the houses, note that inferrence does not provide that level of specificity
+
 // Hover over '<%= participantName %>_assignedHouse'. What type is inferred? Answer: string
 const <%= participantName %>_assignedHouse = <%= participantName %>_assignHouse(120);
 console.log(`${<%= participantName %>_studentName} is assigned to: ${<%= participantName %>_assignedHouse}`);
@@ -60,12 +61,21 @@ validateString(<%= participantName %>_assignedHouse);
 // and returns an object like { name: string, age: number }.
 // Let TypeScript infer the return type. Call the function and log the result. Validate the result object.
 /*
+interface <%= participantName %>_WizardDetails {
+    name: string
+    age: number
+}
+
 function <%= participantName %>_getWizardDetails(name: string, age: number) {
-    // return ...;
+    return {
+        name,
+        age,
+    };
 }
 const <%= participantName %>_details = <%= participantName %>_getWizardDetails(<%= participantName %>_studentName, <%= participantName %>_studentAge);
 console.log("Wizard details:", <%= participantName %>_details);
-// validateObject(...); // You might need a specific validation schema/function for this object structure
+// The thing to note here: Even though the <%= participantName %>_WizardDetails interface exists, and matches the return of getWizardDetails,
+// inferrence does not make the connection - meaning that if one changes, it will decouple from the other.
 */
 
 // --- Array Method Inference ---
