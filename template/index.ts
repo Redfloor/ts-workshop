@@ -3,12 +3,17 @@ const readline = require('readline');
 const path = require('path');
 
 const exercises = [
-  './exercises/excercise1.ts',
-  './exercises/excercise2.ts',
-  './exercises/excercise3.ts',
-  './exercises/excercise4.ts',
-  './exercises/excercise5.ts',
+  // './exercises/excercise1.ts',
+  // './exercises/excercise2.ts',
+  // './exercises/excercise3.ts',
+  // './exercises/excercise4.ts',
+  // './exercises/excercise5.ts',
   // Add more exercise file paths here
+  './intermediateExercises/excercise1-inferrence.ts',
+  './intermediateExercises/excercise2-conditionals.ts',
+  './intermediateExercises/excercise3-utilities.ts',
+  './intermediateExercises/excercise4-mapped.ts',
+  // './intermediateExercises/excercise5-generics.ts',
 ];
 
 const rl = readline.createInterface({
