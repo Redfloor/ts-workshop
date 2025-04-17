@@ -61,7 +61,7 @@ Conditional types let you create types that change based on conditions, like an 
 
 ### Metaphors
 1. **Shape Sorter Toy**
-   - Different shapes go into different holes
+   - Different shapes go into different holes 
    - Like how conditional types route different input types to different output types
 2. **Vehicle**
    - Vehicle can either be a plane or a car
