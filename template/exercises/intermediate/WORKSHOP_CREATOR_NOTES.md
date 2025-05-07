@@ -97,9 +97,22 @@ Extensions and abstractions that takes existing types and let you do more with t
 1. **Kitchen Utensils**
    - Different tools for different food prep tasks
    - Like utility types being different tools for type transformations
+     - E.g. tools. Tool and the material they're made of.
+       - Spatula:
+         - Steel can't use on a non-stick pan (canUseOnNonStick)
+         - Dish washer safe (dishWasherSafe)
+         - Pick can ignore everything but dishWasherSafe and name for context of function packThingsInDishWasher();
+         - Omit, e.g. color. Color has no bearing on cooking or other related kitchen functionality.
+         - Partial, large object, but specific function. (ANY OF)
+           E.g. you have a kitchen object, spatula breaks and you want to replace it. Everything about spatula is still spatula, but maybe certain things about it is different, 
+             e.g. 'dishwasherSafe' is different. 
+            Partial means you don't need to specificy everything, only that which is different
+         - Required.
+           - E.g canCookAnOmelette() and canMakeFood() functions.
+             - For canMakeFood() the type EggsAvailable can be optional, since we can make food that is non egg based
+             - For canCookAnOmelette(), the type EggsAvailable should be required, since you can't make an omelette without breaking some eggs.
 
-2. **Type Sculptor**
-   - Similar to how a sculptor transforms a block of marble into a statue by removing the unnecessary parts, utility types reshape and refine existing types by stripping or adding attributes.
+            
 
 ### Example Exercises
 ```typescript
@@ -122,9 +135,20 @@ interface Config {
 type NetworkConfig = Pick<Config, 'host' | 'port'>;
 type BasicConfig = Omit<Config, 'secure' | 'timeout'>;
 
-// Exercise 3: Record and Extract
+// Exercise 3: Record 
 type UserRoles = 'admin' | 'user' | 'guest';
 type RolePermissions = Record<UserRoles, string[]>;
+
+// Exercise 4: Required
+interface Props {
+  a?: number;
+  b?: string;
+}
+ 
+const obj: Props = { a: 5 };
+ 
+const obj2: Required<Props> = { a: 5 };
+// roperty 'b' is missing in type '{ a: number; }' but required in type 'Required<Props>'.
 
 // Require type
 // todo
