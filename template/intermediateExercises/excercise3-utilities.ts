@@ -26,7 +26,7 @@ interface <%= participantName %>_KitchenTool {
 }
 
 // Partial: When you only need to specify some properties for a replacement
-type <%= participantName %>_ToolReplacement = Partial<<%= participantName %>_KitchenTool>;
+type <%= participantName %>_ToolReplacement = <%= participantName %>_KitchenTool;
 // Now you can create a replacement with just the properties that changed
 const <%= participantName %>_newSpatula: <%= participantName %>_ToolReplacement = {
     material: "silicone",  // Only specifying what changed
@@ -41,7 +41,6 @@ const <%= participantName %>_completeTool: <%= participantName %>_CompleteTool =
     material: "silicone",
     canUseOnNonStick: true,
     dishWasherSafe: true,
-    color: "red"  // Now required!
 };
 console.log("Complete tool:", JSON.stringify(<%= participantName %>_completeTool));
 
@@ -67,10 +66,12 @@ const <%= participantName %>_substitution: <%= participantName %>_IngredientSubs
 console.log("\n--- Section 2: Pick and Omit - The Specialized Tool ---");
 
 // For the dishwasher packing function, we only care about dishWasherSafe and name
-type <%= participantName %>_DishwasherItem = Pick<<%= participantName %>_KitchenTool, 'name' | 'dishWasherSafe'>;
+type <%= participantName %>_DishwasherItem = <%= participantName %>_KitchenTool>;
+// type <%= participantName %>_DishwasherItem = Pick<<%= participantName %>_KitchenTool, 'name' | 'dishWasherSafe'>;
 
 // For the cooking function, we don't care about color
-type <%= participantName %>_CookingTool = Omit<<%= participantName %>_KitchenTool, 'color'>;
+type <%= participantName %>_CookingTool = <%= participantName %>_KitchenTool>;
+// type <%= participantName %>_CookingTool = Omit<<%= participantName %>_KitchenTool, 'color'>;
 
 const <%= participantName %>_dishwasherItem: <%= participantName %>_DishwasherItem = {
     name: "Spatula",
@@ -109,7 +110,8 @@ console.log("\n--- Section 3: Record - The Recipe Book ---");
 type <%= participantName %>_CookingMethod = 'boil' | 'fry' | 'bake' | 'grill';
 
 // Create a record of tools suitable for each cooking method
-type <%= participantName %>_MethodTools = Record<<%= participantName %>_CookingMethod, string[]>;
+type <%= participantName %>_MethodTools = <%= participantName %>_CookingMethod, string[]>;
+// type <%= participantName %>_MethodTools = Record<<%= participantName %>_CookingMethod, string[]>;
 
 const <%= participantName %>_cookingTools: <%= participantName %>_MethodTools = {
     boil: ['Pot', 'Ladle', 'Strainer'],

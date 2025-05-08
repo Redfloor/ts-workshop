@@ -8,7 +8,8 @@
   "scripts": {
     "start": "cwk run",
     "scaffold": "cwk scaffold",
-    "key": "cwk generate-key"
+    "key": "cwk generate-key",
+    "rebuild": "rm -rf participants && npm run scaffold && npm start"
   },
   "dependencies": {
     "code-workshop-kit": "^2.0.3",
