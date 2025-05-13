@@ -16,3 +16,4 @@
     - Basic node-ts example
 [ ] Excercises walkthrough (30-90 min)
 [ ] Thanks for joining!
+

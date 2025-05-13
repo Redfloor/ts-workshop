@@ -26,11 +26,20 @@ const <%= participantName %>_BookGenres = {
 
 // Create a type from the genres
 type <%= participantName %>_Genre = keyof typeof <%= participantName %>_BookGenres;
+// = "Adventure" | "Mystery" | "Romance" | "Fantasy"
 
 // Basic mapped type: Make all properties readonly
 type <%= participantName %>_ReadonlyCovers<T> = {
     readonly [P in keyof T]: T[P];
 };
+// = As above but read only. = "Adventure" | "Mystery" | "Romance" | "Fantasy"
+
+for (let i = 0; i < objectKeys(<%= participantName %>_BookGenres).length; i++) {
+    console.log(`create a readonly cover for, ${objectKeys(<%= participantName %>_BookGenres)[i]}`);
+    const output = [
+        "Adventure", "Mystery", "Romance", "Fantasy"
+    ]
+}
 
 // Apply it to our book genres
 type <%= participantName %>_ReadonlyGenres = <%= participantName %>_ReadonlyCovers<typeof <%= participantName %>_BookGenres>;
@@ -38,7 +47,18 @@ type <%= participantName %>_ReadonlyGenres = <%= participantName %>_ReadonlyCove
 // Create an instance (this will be readonly)
 const <%= participantName %>_genreDescriptions: <%= participantName %>_ReadonlyGenres = <%= participantName %>_BookGenres;
 
-console.log("Genre Descriptions:", JSON.stringify(<%= participantName %>_genreDescriptions));
+// Try remove the type here completely, and see how the error changes.
+const <%= participantName %>_badGenreDescriptions: <%= participantName %>_ReadonlyGenres = {
+    Fantasy: "Magical worlds and epic battles!",
+    SciFi: "Futuristic adventures and technology!"
+};
+
+const <%= participantName %>_showGenreDescriptions = (genre: <%= participantName %>_ReadonlyGenres) => {
+    console.log("Genre Descriptions:", JSON.stringify(genre))
+}
+
+<%= participantName %>_showGenreDescriptions(<%= participantName %>_badGenreDescriptions);
+<%= participantName %>_showGenreDescriptions(<%= participantName %>_genreDescriptions);
 
 // Student Task 1: Create a mapped type that makes all properties optional.
 // Apply it to the book genres and create a partial genre description object.
@@ -48,7 +68,7 @@ type <%= participantName %>_OptionalCovers<T> = {
 };
 type <%= participantName %>_OptionalGenres = <%= participantName %>_OptionalCovers<typeof <%= participantName %>_BookGenres>;
 const <%= participantName %>_partialGenres: <%= participantName %>_OptionalGenres = {
-    Adventure: "Exciting quests!"
+    Adventure: "Exciting quests and daring journeys!"
 };
 */
 
