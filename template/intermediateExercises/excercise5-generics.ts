@@ -1,4 +1,4 @@
-// Exercise 5: Generics - From Basics to Styled Components
+// Exercise 5: Generics - Making Code Flexible and Type-Safe
 import {
     validateString,
     validateNumber,
@@ -7,6 +7,7 @@ import {
 
 // --- Introduction ---
 // Generics in TypeScript are like templates that can work with any type while maintaining type safety.
+// They help you write flexible, reusable code that works with different data types.
 // Think of them as "type parameters" that you fill in when you use the component.
 
 console.log("--- 🎨 Welcome to the <%= participantName %> Generics Workshop! ---");
@@ -15,45 +16,45 @@ console.log("--- 🎨 Welcome to the <%= participantName %> Generics Workshop! -
 console.log("\n--- Section 1: Basic Generics ---");
 
 // 1. Generic Function
+// This function can work with any type T, and returns the same type
+// The type parameter T is like a placeholder that gets filled in when you use the function
 function <%= participantName %>_identity<T>(arg: T): T {
     return arg;
 }
 
-// Try it out:
-const <%= participantName %>_num = <%= participantName %>_identity<number>(42);    // num: number
-const <%= participantName %>_str = <%= participantName %>_identity("hello");      // str: string (type inferred)
+// Try it out with different types:
+const <%= participantName %>_num = <%= participantName %>_identity<number>(42);    // T is number
+const <%= participantName %>_str = <%= participantName %>_identity("hello");      // T is inferred as string
+const <%= participantName %>_bool = <%= participantName %>_identity(true);        // T is boolean
 
-// 2. Generic Interface
+// 2. Generic Array Function
+// This function can work with arrays of any type
+// It's more flexible than writing separate functions for string[], number[], etc.
+function <%= participantName %>_printArray<T>(arr: T[]): void {
+    arr.forEach(item => console.log(item));
+}
+
+// Try it out with different array types:
+<%= participantName %>_printArray<string>(["apple", "banana", "cherry"]);
+<%= participantName %>_printArray<number>([1, 2, 3, 4, 5]);
+
+// 3. Generic Interface
+// This interface can hold a value of any type
+// The type parameter T makes it reusable for different value types
 interface <%= participantName %>_Box<T> {
     value: T;
 }
 
-// Try it out:
+// Try it out with different value types:
 const <%= participantName %>_stringBox: <%= participantName %>_Box<string> = { value: "hello" };
 const <%= participantName %>_numberBox: <%= participantName %>_Box<number> = { value: 42 };
-
-// 3. Generic Class
-class <%= participantName %>_Stack<T> {
-    private items: T[] = [];
-    
-    push(item: T): void {
-        this.items.push(item);
-    }
-    
-    pop(): T | undefined {
-        return this.items.pop();
-    }
-}
-
-// Try it out:
-const <%= participantName %>_stack = new <%= participantName %>_Stack<string>();
-<%= participantName %>_stack.push("first");
-<%= participantName %>_stack.push("second");
 
 // ================ PART 2: Generic Constraints ================
 console.log("\n--- Section 2: Generic Constraints ---");
 
 // 1. Basic Constraint
+// This function only works with types that have a length property
+// The constraint 'extends { length: number }' ensures type safety
 function <%= participantName %>_logLength<T extends { length: number }>(arg: T): T {
     console.log(`Length: ${arg.length}`);
     return arg;
@@ -64,114 +65,80 @@ function <%= participantName %>_logLength<T extends { length: number }>(arg: T):
 <%= participantName %>_logLength([1, 2, 3]);   // OK - array has length
 // <%= participantName %>_logLength(42);      // Error - number has no length
 
-// ================ PART 3: Styled Components ================
-console.log("\n--- Section 3: Styled Components ---");
+// ================ PART 3: Practical Example - Generic Dropdown ================
+console.log("\n--- Section 3: Generic Dropdown ---");
 
-// 1. Basic Styled Component
-interface <%= participantName %>_StyledProps {
-    color?: string;
-    backgroundColor?: string;
-    padding?: string;
-    margin?: string;
+// Instead of creating multiple types for different dropdown values:
+// type StringDropdown = { label: string; value: string; }
+// type NumberDropdown = { label: string; value: number; }
+// type BooleanDropdown = { label: string; value: boolean; }
+
+// We can use a single generic type:
+// This makes our code more maintainable and reduces duplication
+type <%= participantName %>_Dropdown<T> = {
+    label: string;
+    value: T;
+};
+
+// Now we can create dropdowns with any type of value:
+const <%= participantName %>_stringDropdown: <%= participantName %>_Dropdown<string> = {
+    label: "Select a color",
+    value: "red"
+};
+
+const <%= participantName %>_numberDropdown: <%= participantName %>_Dropdown<number> = {
+    label: "Select a quantity",
+    value: 42
+};
+
+const <%= participantName %>_booleanDropdown: <%= participantName %>_Dropdown<boolean> = {
+    label: "Is it active?",
+    value: true
+};
+
+// We can even use complex types:
+interface <%= participantName %>_User {
+    id: number;
+    name: string;
 }
 
-class <%= participantName %>_StyledDiv {
-    private element: HTMLDivElement;
-    private props: <%= participantName %>_StyledProps;
-
-    constructor(props: <%= participantName %>_StyledProps) {
-        this.element = document.createElement('div');
-        this.props = props;
-        this.applyStyles();
-    }
-
-    private applyStyles(): void {
-        Object.entries(this.props).forEach(([key, value]) => {
-            if (value) {
-                this.element.style[key as any] = value;
-            }
-        });
-    }
-
-    getElement(): HTMLDivElement {
-        return this.element;
-    }
-}
-
-// Try it out:
-const <%= participantName %>_redBox = new <%= participantName %>_StyledDiv({
-    color: 'white',
-    backgroundColor: 'red',
-    padding: '10px',
-    margin: '5px'
-});
-
-// 2. Generic Styled Component with Event Handler
-interface <%= participantName %>_StyledButtonProps extends <%= participantName %>_StyledProps {
-    onClick?: (event: MouseEvent) => void;
-}
-
-class <%= participantName %>_StyledButton {
-    private element: HTMLButtonElement;
-    private props: <%= participantName %>_StyledButtonProps;
-
-    constructor(props: <%= participantName %>_StyledButtonProps) {
-        this.element = document.createElement('button');
-        this.props = props;
-        this.applyStyles();
-        this.setupEventHandlers();
-    }
-
-    private applyStyles(): void {
-        Object.entries(this.props).forEach(([key, value]) => {
-            if (value && key !== 'onClick') {
-                this.element.style[key as any] = value;
-            }
-        });
-    }
-
-    private setupEventHandlers(): void {
-        if (this.props.onClick) {
-            this.element.addEventListener('click', this.props.onClick);
-        }
-    }
-
-    getElement(): HTMLButtonElement {
-        return this.element;
-    }
-}
-
-// Try it out:
-const <%= participantName %>_blueButton = new <%= participantName %>_StyledButton({
-    color: 'white',
-    backgroundColor: 'blue',
-    padding: '10px',
-    margin: '5px',
-    onClick: (event) => console.log('Button clicked!', event)
-});
+const <%= participantName %>_userDropdown: <%= participantName %>_Dropdown<<%= participantName %>_User> = {
+    label: "Select a user",
+    value: { id: 1, name: "John" }
+};
 
 // ================ Your Turn! ================
 
-// TODO: Create a generic styled component that can work with any HTML element
-// 1. Create a generic type for the element
-// 2. Add support for custom event handlers
-// 3. Make it work with any HTML element type
+// TODO: Create a generic dropdown list component
+// 1. Create a type for dropdown options (label and value)
+// 2. Create a type for the dropdown component that can handle any value type
+// 3. Add support for multiple selection
 
 /*
-class <%= participantName %>_GenericStyledElement<T extends HTMLElement> {
-    // Your implementation here
-}
+type <%= participantName %>_DropdownOption<T> = {
+    label: string;
+    value: T;
+};
+
+type <%= participantName %>_DropdownList<T> = {
+    options: <%= participantName %>_DropdownOption<T>[];
+    selected?: T;
+    onSelect?: (value: T) => void;
+};
 
 // Example usage:
-const <%= participantName %>_styledInput = new <%= participantName %>_GenericStyledElement<HTMLInputElement>({
-    color: 'black',
-    backgroundColor: 'white',
-    padding: '5px',
-    // Add your implementation
-});
+const <%= participantName %>_colorDropdown: <%= participantName %>_DropdownList<string> = {
+    options: [
+        { label: "Red", value: "red" },
+        { label: "Blue", value: "blue" },
+        { label: "Green", value: "green" }
+    ],
+    onSelect: (value) => console.log("Selected:", value)
+};
 */
 
 console.log("\n--- ✨ <%= participantName %> Generics Workshop complete! ---");
 
 // Export something to make it a module
 export const <%= participantName %>_genericsExerciseComplete = true;
+
