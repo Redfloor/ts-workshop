@@ -12,8 +12,8 @@ const exercises = [
   './intermediateExercises/excercise1-inferrence.ts',
   './intermediateExercises/excercise2-conditionals.ts',
   './intermediateExercises/excercise3-utilities.ts',
-  './intermediateExercises/excercise4-mapped.ts',
-  // './intermediateExercises/excercise5-generics.ts',
+  './intermediateExercises/excercise5-mapped.ts',
+  // './intermediateExercises/excercise4-generics.ts',
 ];
 
 const rl = readline.createInterface({

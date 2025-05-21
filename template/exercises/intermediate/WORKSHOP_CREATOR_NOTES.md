@@ -90,7 +90,8 @@ type MaybeError<T> = T extends Error
 
 ## 3. Utility Types
 ### What It Is
-Built-in TypeScript types that transform other types in common ways. They're like type transformation tools that come with TypeScript.
+Built-in TypeScript types that transform other types in common ways.
+They're like type transformation tools that come with TypeScript.
 Extensions and abstractions that takes existing types and let you do more with that.
 
 ### Metaphors
@@ -154,7 +155,43 @@ const obj2: Required<Props> = { a: 5 };
 // todo
 ```
 
-## 4. Mapped Types
+## 4. Generics
+### What It Is
+Generics allow you to write flexible, reusable code that works with multiple types while maintaining type safety. They're like templates that can work with different types.
+
+### Metaphors
+1. **Adjustable Wrench**
+    - One tool that works with different size nuts and bolts
+    - Like how generics work with different types
+2. **Modular Adapter**
+    - Similar to an adapter that can connect different types of plugs to a single socket
+    - generics offer a flexible way to interface with various types while maintaining a consistent structure.
+
+
+### Example Exercises
+```typescript
+// Exercise 1: Generic Container
+class Box<T> {
+    private content: T;
+    put(item: T) { this.content = item; }
+    get(): T { return this.content; }
+}
+
+// Exercise 2: Generic Constraints
+interface Lengthwise { length: number; }
+function measureLength<T extends Lengthwise>(arg: T): number {
+    return arg.length;
+}
+
+// Exercise 3: Generic Factory
+class Factory<T> {
+    create<K extends keyof T>(key: K, value: T[K]): Partial<T> {
+        return { [key]: value } as Partial<T>;
+    }
+}
+```
+
+## 5. Mapped Types
 ### What It Is
 Mapped types let you create new types by transforming each property in an existing type. Like applying the same transformation to every item in a collection.
 
@@ -207,42 +244,6 @@ const genreColors: GenreColors = {
   Romance: "pink"      // Hearts and love!
 };
 
-```
-
-## 5. Generics
-### What It Is
-Generics allow you to write flexible, reusable code that works with multiple types while maintaining type safety. They're like templates that can work with different types.
-
-### Metaphors
-1. **Adjustable Wrench**
-   - One tool that works with different size nuts and bolts
-   - Like how generics work with different types
-2. **Modular Adapter**
-   - Similar to an adapter that can connect different types of plugs to a single socket
-   - generics offer a flexible way to interface with various types while maintaining a consistent structure.
-
-
-### Example Exercises
-```typescript
-// Exercise 1: Generic Container
-class Box<T> {
-    private content: T;
-    put(item: T) { this.content = item; }
-    get(): T { return this.content; }
-}
-
-// Exercise 2: Generic Constraints
-interface Lengthwise { length: number; }
-function measureLength<T extends Lengthwise>(arg: T): number {
-    return arg.length;
-}
-
-// Exercise 3: Generic Factory
-class Factory<T> {
-    create<K extends keyof T>(key: K, value: T[K]): Partial<T> {
-        return { [key]: value } as Partial<T>;
-    }
-}
 ```
 
 ## Workshop Flow Notes

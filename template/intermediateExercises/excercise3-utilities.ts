@@ -1,11 +1,4 @@
 // Exercise 3: Utility Types - The Kitchen Toolbox
-import {
-    validateString,
-    validateNumber,
-    validateBoolean,
-    validateObject
-} from "../validations";
-
 // --- Introduction ---
 // Utility Types in TypeScript are like different kitchen tools - each designed for a specific task.
 // Just as you wouldn't use a spatula to chop vegetables, each utility type has its specific purpose
@@ -66,11 +59,11 @@ const <%= participantName %>_substitution: <%= participantName %>_IngredientSubs
 console.log("\n--- Section 2: Pick and Omit - The Specialized Tool ---");
 
 // For the dishwasher packing function, we only care about dishWasherSafe and name
-type <%= participantName %>_DishwasherItem = <%= participantName %>_KitchenTool>;
+type <%= participantName %>_DishwasherItem = <%= participantName %>_KitchenTool;
 // type <%= participantName %>_DishwasherItem = Pick<<%= participantName %>_KitchenTool, 'name' | 'dishWasherSafe'>;
 
 // For the cooking function, we don't care about color
-type <%= participantName %>_CookingTool = <%= participantName %>_KitchenTool>;
+type <%= participantName %>_CookingTool = <%= participantName %>_KitchenTool;
 // type <%= participantName %>_CookingTool = Omit<<%= participantName %>_KitchenTool, 'color'>;
 
 const <%= participantName %>_dishwasherItem: <%= participantName %>_DishwasherItem = {
@@ -110,7 +103,7 @@ console.log("\n--- Section 3: Record - The Recipe Book ---");
 type <%= participantName %>_CookingMethod = 'boil' | 'fry' | 'bake' | 'grill';
 
 // Create a record of tools suitable for each cooking method
-type <%= participantName %>_MethodTools = <%= participantName %>_CookingMethod, string[]>;
+type <%= participantName %>_MethodTools = <%= participantName %>_CookingMethod;
 // type <%= participantName %>_MethodTools = Record<<%= participantName %>_CookingMethod, string[]>;
 
 const <%= participantName %>_cookingTools: <%= participantName %>_MethodTools = {
