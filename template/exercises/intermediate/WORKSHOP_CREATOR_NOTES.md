@@ -1,5 +1,19 @@
 # Workshop Creator Notes - Advanced TypeScript Concepts
 
+## House Rules
+- Cams optional
+- Raise a hand for questions, we'll try cover them section by section
+- Excercises are more for demonstrating more practical examples.
+- This session is recorded.
+
+### Content:
+- Type Inference
+- Conditionals
+- Utilities
+- Generics & Mapped types
+
+
+
 ## 1. Type Inference
 ### What It Is
 Type inference is TypeScript's ability to automatically detect and assign types based on how values are used in your code. It's like having a smart assistant that figures out what type of container you need based on what you're putting in it. 
